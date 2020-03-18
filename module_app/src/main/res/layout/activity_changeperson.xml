@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/newbk">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar_changeperson"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#2fffffff"
+        android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="修改"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"/>
+
+    </android.support.v7.widget.Toolbar>
+<RelativeLayout
+    android:id="@+id/rl_imformation"
+    android:orientation="horizontal"
+    android:layout_below="@id/toolBar_changeperson"
+    android:layout_marginTop="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text=" 昵称"
+        android:paddingTop="15dp"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:paddingBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/tv_changeperson"
+        android:layout_alignParentRight="true"
+        android:paddingTop="15dp"
+        android:paddingRight="5dp"
+        android:text="hahaha "
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/white"
+        android:background="@null"
+        android:paddingBottom="15dp"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_line"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/rl_imformation"
+        android:src="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+    <RelativeLayout
+        android:layout_below="@id/iv_line"
+        android:id="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text=" 头像"
+            android:paddingTop="15dp"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:paddingBottom="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_arrowright"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_action_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:border_width="1dp"
+            app:border_color="@android:color/white"
+            android:id="@+id/iv_head"
+            android:layout_toLeftOf="@id/iv_arrowright"
+            android:layout_margin="8dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_line1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/rl_head"
+        android:src="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <Button
+        android:id="@+id/btn_changeperson"
+        android:text="提 交"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/roundbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
