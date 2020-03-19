@@ -11,7 +11,6 @@ ext {
             publishNonDefault   : true
     ]
     dependencies = [
-//            "appcompat-v7"     : 'com.android.support:appcompat-v7:25.+',
             "support-design"   : 'com.android.support:design:26.1.0',
 
             "junit"            : 'junit:junit:4.12',
@@ -38,7 +37,6 @@ ext {
             "MultiDex"         : 'com.android.support:multidex:1.0.0',
             "PhotoPicker"      : 'me.iwf.photopicker:PhotoPicker:0.8.4@aar',
 
-            //MyApplication包依赖
 
 
 

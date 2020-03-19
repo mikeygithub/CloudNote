@@ -15,7 +15,7 @@
     </string>
     <string name="action_ok">action_ok</string>
     <string name="action_addimage">action_addimage</string>
-    <string name="mainpage">首页</string>
-    <string name="wode">我的</string>
+    <string name="mainpage">主页</string>
+    <string name="setting">设置</string>
     <string name="title_activity_news">NewsActivity</string>
 </resources>

@@ -20,7 +20,6 @@ import com.example.xz.weiji.R;
 import com.umeng.analytics.MobclickAgent;
 
 import cn.bmob.v3.BmobUser;
-import example.xz.com.myapplication.MainActivity;
 
 
 public class MyFragment extends Fragment implements View.OnClickListener {

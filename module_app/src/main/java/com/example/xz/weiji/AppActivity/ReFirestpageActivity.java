@@ -51,7 +51,7 @@ public class ReFirestpageActivity extends AppCompatActivity {
     private TabLayout tab_layout;
     private MyViewPagerAdapter myViewPagerAdapter;
     //Tab文字,Tab图片，Fragment数组
-    private final int[] TAB_TITLES = new int[]{R.string.mainpage, R.string.wode};
+    private final int[] TAB_TITLES = new int[]{R.string.mainpage, R.string.setting};
     private final int[] TAB_IMgs = new int[]{R.drawable.icon1_selector, R.drawable.icon2_seclector};
     private final Fragment[] TAB_FRAGMENTS = new Fragment[]{new NoteListFragment(), new MyFragment()};
     //Tab数目

@@ -14,7 +14,6 @@
             <option value="$PROJECT_DIR$/lib_xrichtext" />
             <option value="$PROJECT_DIR$/module_app" />
             <option value="$PROJECT_DIR$/module_calendar" />
-            <option value="$PROJECT_DIR$/module_news" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

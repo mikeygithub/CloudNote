@@ -17,7 +17,7 @@ import org.litepal.LitePal;
 import org.litepal.LitePalApplication;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
-import example.xz.com.myapplication.Utils.DBUtil;
+//import example.xz.com.myapplication.Utils.DBUtil;
 
 import static com.umeng.commonsdk.stateless.UMSLEnvelopeBuild.mContext;
 
@@ -39,7 +39,7 @@ public class MyApplication extends LitePalApplication {
         BGASwipeBackManager.getInstance().init(this);
 
         LitePal.initialize(this);
-        DBUtil.getInstance();
+//        DBUtil.getInstance();
 
         //初始化友盟
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "5b021f49f43e48045a0000ac");
