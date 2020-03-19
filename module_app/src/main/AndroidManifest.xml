@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
-        android:name=".Application"
+        android:name="com.mikey.Application"
         android:allowBackup="true"
         android:icon="@mipmap/launcher_memory"
         android:label="@string/application_name"
@@ -32,7 +32,7 @@
 
 
         <activity
-            android:name="com.example.xz.weiji.AppActivity.LoginActivity"
+            android:name="com.mikey.AppActivity.LoginActivity"
             android:theme="@style/Theme.AppStartLoad">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,22 +61,22 @@
 
         </activity>
         <activity
-            android:name=".AppActivity.RegisterActivity"
+            android:name="com.mikey.AppActivity.RegisterActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".AppActivity.NoteActivity"
+            android:name="com.mikey.AppActivity.NoteActivity"
             android:theme="@style/NoteStyle">
 
         </activity>
         <activity
-            android:name=".AppActivity.EditActivity"
+            android:name="com.mikey.AppActivity.EditActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".AppActivity.ClassifyActivity" />
-        <activity android:name=".AppActivity.ChangePersonActivity" />
-        <activity android:name=".AppActivity.ReFirestpageActivity"></activity>
-        <activity android:name=".AppActivity.NoteListActivity" />
-        <activity android:name=".AppActivity.CountDownActivity" />
-        <activity android:name=".AppActivity.HeadActivity" />
+        <activity android:name="com.mikey.AppActivity.ClassifyActivity" />
+        <activity android:name="com.mikey.AppActivity.ChangePersonActivity" />
+        <activity android:name="com.mikey.AppActivity.ReFirestpageActivity"></activity>
+        <activity android:name="com.mikey.AppActivity.NoteListActivity" />
+        <activity android:name="com.mikey.AppActivity.CountDownActivity" />
+        <activity android:name="com.mikey.AppActivity.HeadActivity" />
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:theme="@style/AnotherAppTheme"

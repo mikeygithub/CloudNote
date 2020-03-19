@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.example.xz.weiji.View.LeftSwipeMenuRecyclerView
+        <com.mikey.View.LeftSwipeMenuRecyclerView
             android:id="@+id/rclv_mdaojishilist"
             android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
