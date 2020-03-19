@@ -42,12 +42,9 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-/**
- * Created by xz on 2016/10/8.
- */
 
 public class ClassifyActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener,
-RecyclerAdapter.OnLongClickListner{
+        RecyclerAdapter.OnLongClickListner {
     private RecyclerView rv;
     //第一和第二层列表
     private ArrayList<String> firstlist;
@@ -57,20 +54,19 @@ RecyclerAdapter.OnLongClickListner{
     private SwipeRefreshLayout swipe_classify;
     private Group groupone;
     private EditText et;
-//    private ExpandableAdapter expandableAdapter;
     private RecyclerAdapter adapter;
     private List<SecondaryListAdapter.DataTree<String, Note>> datas;
     private List<Group> gruopTestlist;
     String[] s;
     private View view;
-    private boolean isRefresh=false;
+    private boolean isRefresh = false;
+
     @Override
     public void onResume() {
         super.onResume();
-        if(isRefresh)
+        if (isRefresh)
             onRefresh();
-        //  Toast.makeText(context,"onResume刷新",Toast.LENGTH_SHORT).show();
-        isRefresh=true;
+        isRefresh = true;
     }
 
     @Override
@@ -95,10 +91,7 @@ RecyclerAdapter.OnLongClickListner{
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setHasFixedSize(true);
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        adapter = new RecyclerAdapter(this,this);
-
-
-//        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        adapter = new RecyclerAdapter(this, this);
         BmobQuery<Group> bmobQuery = new BmobQuery<Group>();
         bmobQuery.addWhereEqualTo("author", author.getObjectId());
 
@@ -123,8 +116,6 @@ RecyclerAdapter.OnLongClickListner{
                                 @Override
                                 public void done(List<Note> list, BmobException e) {
                                     if (e == null) {
-                                        //    Toast.makeText(ClassifyActivity.this, "测试查询成功", Toast.LENGTH_SHORT).show();
-                                        //  Toast.makeText(ClassifyActivity.this, "测试查询成功" + list.get(0).getNote(), Toast.LENGTH_SHORT).show();
                                         List<List<Note>> threeList = new ArrayList<List<Note>>();
                                         for (int i = 0; i < s.length; i++) {
                                             List<Note> list1 = new ArrayList<Note>();
@@ -142,38 +133,20 @@ RecyclerAdapter.OnLongClickListner{
                                                     Log.i("测试", note.getSort());
                                                     Log.i("各自的分组", threeList.get(i).toString());
                                                 }
-
-
                                             }
-                                            //  temp.add(note);
-
                                         }
                                         Log.i("threeList", threeList.toString());
 
                                         secondlist = threeList;
 
-                                        datas= new ArrayList<>();
-                                        for (int i=0;i<firstlist.size();i++){
-                                            datas.add(new SecondaryListAdapter.DataTree<String, Note>(firstlist.get(i),secondlist.get(i)));
-                                            Log.i("datas",firstlist.get(i).toString()+","+secondlist.get(i).toString());
+                                        datas = new ArrayList<>();
+                                        for (int i = 0; i < firstlist.size(); i++) {
+                                            datas.add(new SecondaryListAdapter.DataTree<String, Note>(firstlist.get(i), secondlist.get(i)));
+                                            Log.i("datas", firstlist.get(i).toString() + "," + secondlist.get(i).toString());
                                         }
 
                                         adapter.setData(datas);
                                         rv.setAdapter(adapter);
-
-//                                        expandableAdapter = new ExpandableAdapter(ClassifyActivity.this, firstlist, secondlist);
-//                                        expandableListView.setGroupIndicator(null);
-//                                        //expandableListView.setDivider(null);
-//                                        expandableListView.setAdapter(expandableAdapter);
-//                                        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//                                            @Override
-//                                            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-//                                                // Toast.makeText(ClassifyActivity.this, "点击有效", Toast.LENGTH_SHORT).show();
-//
-//
-//                                                return true;
-//                                            }
-//                                        });
                                         swipe_classify.setRefreshing(false);
                                     } else {
                                         Toast.makeText(ClassifyActivity.this, "测试查询失败", Toast.LENGTH_SHORT).show();
@@ -194,8 +167,7 @@ RecyclerAdapter.OnLongClickListner{
 
     private void initView() {
         tb_classify = (Toolbar) findViewById(R.id.tb_classify);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             tb_classify.getLayoutParams().height = Utils.getAppBarHeight(this);
             tb_classify.setPadding(tb_classify.getPaddingLeft(),
                     Utils.getStatusBarHeight(this),
@@ -241,10 +213,6 @@ RecyclerAdapter.OnLongClickListner{
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
             et = new EditText(ClassifyActivity.this);
-            // et.setBackgroundResource(R.drawable.edittext_selector);
-            //  LinearLayout.LayoutParams layoutParams=(LinearLayout.LayoutParams)et.getLayoutParams();
-            //  layoutParams.setMargins(10,10,10,0);
-            //  et.setLayoutParams(layoutParams);
 
             new AlertDialog.Builder(this).setTitle("新建分类")
                     .setView(et)
@@ -263,10 +231,9 @@ RecyclerAdapter.OnLongClickListner{
                                     public void done(String s, BmobException e) {
                                         if (e == null) {
                                             Toast.makeText(ClassifyActivity.this, "新建" + input + "成功", Toast.LENGTH_SHORT).show();
-                                            Intent i = new Intent(ClassifyActivity.this,ClassifyActivity.class);
+                                            Intent i = new Intent(ClassifyActivity.this, ClassifyActivity.class);
                                             finish();
                                             startActivity(i);
-
 
 
                                         } else
@@ -290,27 +257,27 @@ RecyclerAdapter.OnLongClickListner{
     @Override
     public void onLongClick(final int group_position) {
         new AlertDialog.Builder(ClassifyActivity.this).setTitle("确认删除此分组？")
-                                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                                                    @Override
-                                                                    public void onClick(DialogInterface dialog, int which) {
-                                                                        Group group = gruopTestlist.get(group_position);
-                                                                        group.delete(new UpdateListener() {
-                                                                                         @Override
-                                                                                         public void done(BmobException e) {
-                                                                                             if (e == null) {
-                                                                                                 Toast.makeText(ClassifyActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-                                                                                                 Intent i = new Intent(ClassifyActivity.this,ClassifyActivity.class);
-                                                                                                 startActivity(i);
-                                                                                                 finish();
-                                                                                             } else
-                                                                                                 Toast.makeText(ClassifyActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
-                                                                                         }
-                                                                                     }
-                                                                        );
-                                                                    }
-                                                                }
-                                                        )
-                                                        .setNegativeButton("取消", null)
-                                                        .show();
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Group group = gruopTestlist.get(group_position);
+                                group.delete(new UpdateListener() {
+                                                 @Override
+                                                 public void done(BmobException e) {
+                                                     if (e == null) {
+                                                         Toast.makeText(ClassifyActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                                                         Intent i = new Intent(ClassifyActivity.this, ClassifyActivity.class);
+                                                         startActivity(i);
+                                                         finish();
+                                                     } else
+                                                         Toast.makeText(ClassifyActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
+                                                 }
+                                             }
+                                );
+                            }
+                        }
+                )
+                .setNegativeButton("取消", null)
+                .show();
     }
 }

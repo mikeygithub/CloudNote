@@ -6,18 +6,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.xz.weiji.DataTable.User;
-import com.example.xz.weiji.Listner.BaseUiListner;
 import com.example.xz.weiji.R;
 import com.rengwuxian.materialedittext.MaterialEditText;
-import com.tencent.connect.common.Constants;
-import com.tencent.tauth.Tencent;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
@@ -26,9 +22,6 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-/**
- * Created by xz on 2016/9/14.
- */
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private MaterialEditText lg_username;
@@ -38,12 +31,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_lg_rg;
     private BmobUser bmobUser;
     private ProgressDialog progressDialog;
-    private Tencent tencent;
-    /**
-     * 通过QQ登陆
-     */
-//    private TextView tv_qq;
-    private BaseUiListner listner;
     public Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -57,23 +44,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bmob.initialize(this, "1ee478a204051c3c3c94372e0bb462b1");
+        Bmob.initialize(this, "df965ca1f844643790948edd1c2a34eb");
         bmobUser = BmobUser.getCurrentUser();
         if (bmobUser != null) {
             directLogin();
         }
         setContentView(R.layout.activity_login);
         initView();
-
-
-        tencent = Tencent.createInstance("1106314377", this.getApplicationContext());
-        listner=new BaseUiListner(LoginActivity.this,tencent,handler);
-
         //友盟的相关接口
         UMConfigure.setLogEnabled(true);
         UMConfigure.setEncryptEnabled(true);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
-        MobclickAgent.setSecret(this,"5b021f49f43e48045a0000ac");
+        MobclickAgent.setSecret(this,"5e72e8f7895cca5f2d0000cc");
 
 
     }
@@ -98,16 +80,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (e == null) {
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     Intent t = new Intent(LoginActivity.this, ReFirestpageActivity.class);
-                    //t.putExtra("name", lg_username.getText().toString());
                     startActivity(t);
-
                     //友盟账号登陆统计
                     MobclickAgent.onProfileSignIn(user.getObjectId());
                     finish();
                     progressDialog.cancel();
                 } else {
-                    Log.i("LoginActivity","errorMessage"+e.toString());
-                    Toast.makeText(LoginActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "账号不存在或密码错误", Toast.LENGTH_SHORT).show();
+                    progressDialog.cancel();
                 }
 
             }
@@ -125,8 +105,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("正在登陆");
         progressDialog.setCancelable(true);
-//        tv_qq = (TextView) findViewById(R.id.tv_qq);
-//        tv_qq.setOnClickListener(this);
 
         bt_login.setOnClickListener(this);
         tv_lg_rg.setOnClickListener(this);
@@ -150,38 +128,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 finish();
                 break;
-//            case R.id.tv_qq:
-//                login();
-//                break;
         }
     }
-
-    public void login() {
-
-        if (!tencent.isSessionValid()) {
-            tencent.login(this, "all",listner);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Tencent.onActivityResultData(requestCode,resultCode,data,listner);
-        if(requestCode==Constants.REQUEST_API){
-            if(resultCode==Constants.ACTIVITY_OK){
-                Tencent.handleResultData(data,listner);
-            }
-        }
-    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        MobclickAgent.onResume(this);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        MobclickAgent.onPause(this);
-//    }
 }

@@ -40,7 +40,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_wode, container, false);
-        Log.i("MyFragment", "执行了");
         initView(view);
         return view;
     }
@@ -64,13 +63,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(context, ChangePersonActivity.class));
                 break;
             case R.id.rl_aboutus:
-                Toast.makeText(context,"麦奇",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"麦奇科技责任有限公司",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rl_logout:
                 isconfirm();
                 break;
             case R.id.rl_settings:
-                Toast.makeText(context,"开发者正在努力开发",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"还没写完呢",Toast.LENGTH_SHORT).show();
                 break;
         }
     }

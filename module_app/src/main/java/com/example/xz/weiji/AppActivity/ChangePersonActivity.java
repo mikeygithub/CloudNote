@@ -31,9 +31,6 @@ import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by xz on 2016/10/9.
- */
 
 public class ChangePersonActivity extends BaseActivity implements View.OnClickListener {
     private EditText tv_changeperson;
@@ -90,19 +87,12 @@ public class ChangePersonActivity extends BaseActivity implements View.OnClickLi
         toolBar_changeperson.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i=new Intent(ChangePersonActivity.this,ReFirestpageActivity.class);
-//                startActivity(i);
-//                finish();
                 onBackPressed();
             }
         });
         iv_head = (CircleImageView) findViewById(R.id.iv_head);
         rl_head = (RelativeLayout) findViewById(R.id.rl_head);
         rl_head.setOnClickListener(this);
-
-
-//            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE
-//            ,Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
 
     }
 

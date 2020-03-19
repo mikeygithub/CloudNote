@@ -34,9 +34,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-/**
- * Created by xz on 2016/10/28.
- */
 
 public class NoteListActivity extends BaseActivity {
 
@@ -103,14 +100,6 @@ public class NoteListActivity extends BaseActivity {
         onRefresh();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        Toast.makeText(context, "执行了onResume方法且refresh", Toast.LENGTH_SHORT).show();
-//        onRefresh();
-//    }
-
-
     private void onRefresh() {
 
         BmobQuery<Note> query = new BmobQuery<Note>();
@@ -137,30 +126,6 @@ public class NoteListActivity extends BaseActivity {
                     rclv_list.setItemAnimator(new DefaultItemAnimator());
                     rclv_list.setLayoutManager(new LinearLayoutManager(NoteListActivity.this));
                     noteAdapter = new RVAdapter(NoteListActivity.this,arrayList, datelist, titlelist);
-//                    noteAdapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(View view, int position) {
-//                            //Toast.makeText(context,"点击了"+position,Toast.LENGTH_SHORT).show();
-//                            startEditActivity(position);
-//                           // finish();
-//                        }
-//
-//                    });
-//                    //列表设置长按点击效果
-//                    noteAdapter.setOnItemLongClickListener(new NoteAdapter.OnItemLongClickListener() {
-//
-//                        @Override
-//                        public void onItemLongClick(View view, int position) {
-//                            queryGroups(position);
-//                        }
-//                    });
-//                    noteAdapter.setmIDeleteBtnClickListener(new NoteAdapter.IonSlidingViewClickListener() {
-//                        @Override
-//                        public void onDeleteBtnCilck(View view, int position) {
-//                          //  Toast.makeText(context,"删除了"+position,Toast.LENGTH_SHORT).show();
-//                            deleteNote(position);
-//                        }
-//                    });
 
                     rclv_list.setAdapter(noteAdapter);
                     rclv_list.setOnItemActionListener(new OnItemActionListener() {
@@ -202,9 +167,6 @@ public class NoteListActivity extends BaseActivity {
                     datelist.remove(position);
                     titlelist.remove(position);
                     noteAdapter.notifyItemRemoved(position);
-                   // onRefresh();
-
-
                 } else
                     Toast.makeText(context, "删除笔记失败", Toast.LENGTH_SHORT).show();
             }
@@ -292,87 +254,7 @@ public class NoteListActivity extends BaseActivity {
             titlelist.clear();
             noteList.clear();
             onRefresh();
-            //noteAdapter.notifyDataSetChanged();
         }
     }
-
-
-
-//    public static class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder>{
-//        private ArrayList<String> noteList;
-//        private ArrayList<String> dateList;
-//        private ArrayList<String> titleList;
-//        private OnItemClickListener onItemClickListener;
-//        private OnItemLongClickListener onItemLongClickListener;
-//        public NoteAdapter(ArrayList<String> noteList, ArrayList<String> dateList, ArrayList<String> titleList) {
-//            this.noteList = noteList;
-//            this.dateList = dateList;
-//            this.titleList = titleList;
-//        }
-//        public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-//            this.onItemClickListener = onItemClickListener;
-//        }
-//
-//        public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
-//            this.onItemLongClickListener = onItemLongClickListener;
-//        }
-//        public interface OnItemClickListener {
-//            void onItemClick(View view, int position);
-//        }
-//
-//        public interface OnItemLongClickListener {
-//            void onItemLongClick(View view, int position);
-//        }
-//        @Override
-//        public NoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            NoteViewHolder noteViewHolder=new NoteViewHolder(LayoutInflater.from(context).inflate(R.layout.item_notelist
-//                    ,parent,false));
-//            return noteViewHolder;
-//        }
-//        @Override
-//        public void onBindViewHolder(final NoteViewHolder holder, final int position) {
-//            holder.title.setText(titleList.get(position));
-//            holder.note.setText(noteList.get(position));
-//            holder.date.setText(dateList.get(position));
-//            if (onItemClickListener != null) {
-//                holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        onItemClickListener.onItemClick(holder.itemView,position);
-//                    }
-//                });
-//            }
-//            if (onItemLongClickListener != null) {
-//                holder.linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
-//                    @Override
-//                    public boolean onLongClick(View v) {
-//                        onItemLongClickListener.onItemLongClick(holder.itemView, position);
-//                        return true;
-//                    }
-//                });
-//            }
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return noteList.size();
-//        }
-//
-//        class NoteViewHolder extends RecyclerView.ViewHolder{
-//            TextView title;
-//            TextView note;
-//            TextView date;
-//            LinearLayout linearLayout;
-//            public NoteViewHolder(View itemView) {
-//                super(itemView);
-//                title=(TextView)itemView.findViewById(R.id.tv_notetitle);
-//                note=(TextView)itemView.findViewById(R.id.tv_note);
-//                date=(TextView)itemView.findViewById(R.id.tv_date);
-//                linearLayout=(LinearLayout)itemView.findViewById(R.id.ll_item);
-//            }
-//        }
-//    }
-
-
 }
 

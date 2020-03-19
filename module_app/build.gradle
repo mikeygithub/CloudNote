@@ -95,4 +95,6 @@ dependencies {
     implementation project(path: ':lib_xrichtext')
     implementation project(':module_calendar')
     implementation project(':lib_common')
+    testImplementation 'org.testng:testng:6.9.6'
+    testImplementation 'junit:junit:4.12'
 }

@@ -1,6 +1,5 @@
 package com.example.xz.weiji.View;
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
@@ -9,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -23,8 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.Toast;
 
-import com.example.xz.weiji.AppActivity.DaojishiActivity;
-import com.example.xz.weiji.DataTable.Daojishi;
+import com.example.xz.weiji.AppActivity.CountDownActivity;
+import com.example.xz.weiji.DataTable.CountDown;
 import com.example.xz.weiji.R;
 
 import java.util.Calendar;
@@ -33,11 +31,8 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-/**
- * Created by Administrator on 2018/9/6.
- */
 
-public class TestDialog extends Dialog {
+public class TheDialog extends Dialog {
 
 
 
@@ -59,7 +54,7 @@ public class TestDialog extends Dialog {
     private Scroller scroller;
 
 
-    public TestDialog(@NonNull Context context) {
+    public TheDialog(@NonNull Context context) {
         super(context,R.style.mydialog);
         this.context=context;
         // 拿到Dialog的Window, 修改Window的属性
@@ -108,7 +103,7 @@ public class TestDialog extends Dialog {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TestDialog.this.dismiss();
+                TheDialog.this.dismiss();
             }
         });
         view=getWindow().getDecorView();
@@ -226,14 +221,14 @@ public class TestDialog extends Dialog {
         day = calendar.get(Calendar.DAY_OF_MONTH);
         int tempMonth=month+1;
         selecteddate= year + "-" + tempMonth + "-" + day ;
-        Log.i("DaojishiActivity","selecteddate:"+selecteddate);
+        Log.i("CountDownActivity","selecteddate:"+selecteddate);
         datepicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 monthOfYear++;
                 selecteddate= year + "-" + monthOfYear + "-" + dayOfMonth ;
-                //  Toast.makeText(DaojishiActivity.this, "您已选择"+selecteddate, Toast.LENGTH_SHORT).show();
-                Log.i("DaojishiActivity", "点击日期时selecteddate："+selecteddate);
+                //  Toast.makeText(CountDownActivity.this, "您已选择"+selecteddate, Toast.LENGTH_SHORT).show();
+                Log.i("CountDownActivity", "点击日期时selecteddate："+selecteddate);
                 // daojishi.setLaterdate(date);
             }
         });
@@ -243,10 +238,10 @@ public class TestDialog extends Dialog {
 
     private void commit() {
 
-        final Daojishi daojishi = new Daojishi();
-        daojishi.setText(et_daojishi_text.getText().toString());
-        daojishi.setLaterdate(selecteddate);
-        daojishi.setUser(BmobUser.getCurrentUser());
+        final CountDown countDown = new CountDown();
+        countDown.setText(et_daojishi_text.getText().toString());
+        countDown.setLaterdate(selecteddate);
+        countDown.setUser(BmobUser.getCurrentUser());
 
 
 
@@ -254,16 +249,16 @@ public class TestDialog extends Dialog {
         if (TextUtils.isEmpty(et_daojishi_text.getText().toString())) {
             Toast.makeText(context, "标题不能为空", Toast.LENGTH_SHORT).show();
         } else {
-            daojishi.save(new SaveListener<String>() {
+            countDown.save(new SaveListener<String>() {
                 @Override
                 public void done(String s, BmobException e) {
                     if(e==null){
                         Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
-                        TestDialog.this.dismiss();
-                        ((DaojishiActivity)context).onResume();
+                        TheDialog.this.dismiss();
+                        ((CountDownActivity)context).onResume();
                     }else {
                         Toast.makeText(context, "保存失败", Toast.LENGTH_SHORT).show();
-                        TestDialog.this.dismiss();
+                        TheDialog.this.dismiss();
                     }
                 }
             });

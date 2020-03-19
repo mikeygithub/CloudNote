@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.xz.weiji.AppActivity.ClassifyActivity;
-import com.example.xz.weiji.AppActivity.DaojishiActivity;
+import com.example.xz.weiji.AppActivity.CountDownActivity;
 import com.example.xz.weiji.AppActivity.EditActivity;
 import com.example.xz.weiji.AppActivity.NoteActivity;
 import com.example.xz.weiji.AppActivity.NoteListActivity;
@@ -40,7 +40,6 @@ import com.example.xz.weiji.DataTable.Group;
 import com.example.xz.weiji.DataTable.Note;
 import com.example.xz.weiji.R;
 import com.example.xz.weiji.View.RecycleViewDivider;
-import com.jeek.calendar.activity.MainActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -52,9 +51,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-/**
- * Created by xz on 2016/9/20.
- */
 
 public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     Context context;
@@ -81,8 +77,6 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getActivity();
-        Log.i("onCreate", "执行了");
-
     }
 
 
@@ -133,8 +127,6 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
         ll_jibiji.setOnClickListener(this);
         ll_fenlei = (LinearLayout) view.findViewById(R.id.ll_fenlei);
         ll_fenlei.setOnClickListener(this);
-//        ll_zhangben = (LinearLayout) view.findViewById(R.id.ll_zhangben);
-//        ll_zhangben.setOnClickListener(this);
         ll_beiwang = (LinearLayout) view.findViewById(R.id.ll_beiwang);
         ll_beiwang.setOnClickListener(this);
         ll_daojishi = (LinearLayout) view.findViewById(R.id.ll_daojishi);
@@ -161,14 +153,12 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
                     arrayList.clear();
                     datelist.clear();
                     titlelist.clear();
-                    //  Toast.makeText(context, "查询成功;共" + object.size() + "条数据", Toast.LENGTH_SHORT).show();
                     for (Note note : object) {
                         Log.i("Note的值为", note.getNote());
                         arrayList.add(note.getNote());
                         datelist.add(note.getUpdatedAt());
                         titlelist.add(note.getTitle());
                         Log.i("titleList", titlelist.toString());
-                        // Toast.makeText(context, "时间：" + datelist.toString() , Toast.LENGTH_SHORT).show();
                         noteList.add(note);
                     }
 
@@ -178,19 +168,10 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
                     listAdapter.setOnItemClickListener(new ListAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            //Toast.makeText(context,"点击了"+position,Toast.LENGTH_SHORT).show();
                             startEditActivity(position);
                         }
 
                     });
-                    //列表设置长按点击效果
-//                    listAdapter.setOnItemLongClickListener(new ListAdapter.OnItemLongClickListener() {
-//
-//                        @Override
-//                        public void onItemLongClick(View view, int position) {
-//                            queryGroups(position);
-//                        }
-//                    });
                     list_view.setAdapter(listAdapter);
                     list_view.addItemDecoration(new RecycleViewDivider(context));
                     list_view.setItemAnimator(new DefaultItemAnimator());
@@ -266,8 +247,6 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
                             }
                         }
                     }).show();
-
-                    // Toast.makeText(context, "长按成功", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "分组显示失败", Toast.LENGTH_SHORT).show();
                 }
@@ -292,8 +271,6 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==0x12&&resultCode==0x12){
-          //  Toast.makeText(context,"首页刷新",Toast.LENGTH_SHORT).show();
-           // onRefresh();
         }
     }
 
@@ -303,22 +280,15 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
             case R.id.ll_jibiji:
                 Intent i=new Intent(context, EditActivity.class);
                 startActivityForResult(i,0x12);
-               // getActivity().finish();
                 break;
             case R.id.ll_fenlei:
                 startActivity(new Intent(context, ClassifyActivity.class));
-              //  getActivity().finish();
                 break;
-//            case R.id.ll_zhangben:
-//                startActivity(new Intent(context, ZhangbenActivity.class));
-//                //getActivity().finish();
-//                break;
             case R.id.ll_beiwang:
-//                startActivity(new Intent(context, MainActivity.class));
                 startDialog();
                 break;
             case R.id.ll_daojishi:
-                startActivity(new Intent(context,DaojishiActivity.class));
+                startActivity(new Intent(context, CountDownActivity.class));
                 break;
             case R.id.rl_allnote:
                 startActivity(new Intent(context,NoteListActivity.class));
@@ -338,7 +308,6 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
         bt_beiwang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(NoteActivity.this,"点击按钮"+et_beiwang.getText().toString(),Toast.LENGTH_SHORT).show();
                 notifyTongzhilan(et_beiwang.getText().toString());
             }
         });
@@ -357,7 +326,7 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
 
             Intent notificationIntent = new Intent(context, ReFirestpageActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-            Notification notification = new Notification.Builder(context).setContentTitle("记忆+")
+            Notification notification = new Notification.Builder(context).setContentTitle("CloudNote")
                     .setContentText(s).setSmallIcon(icon).setWhen(time).setContentIntent(contentIntent)
                     .build();
             notification.flags = Notification.FLAG_NO_CLEAR;
@@ -419,13 +388,6 @@ public class NoteListFragment extends Fragment implements SwipeRefreshLayout.OnR
         //设置需要改变布局的显示
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
-//            if(mHeights.size()<=position){
-//                mHeights.add((int)(180+Math.random()*100));
-//            }
-//            ViewGroup.LayoutParams lp=holder.tv_note.getLayoutParams();
-//            lp.height=mHeights.get(position);
-//            holder.tv_note.setLayoutParams(lp);
-            // holder.tv_note.setText(noteList.get(position));
             holder.tv_notetitle.setText(titleList.get(position));
             Log.i("onBindViewHolder", noteList.get(position));
             holder.tv_date.setText(dateList.get(position));

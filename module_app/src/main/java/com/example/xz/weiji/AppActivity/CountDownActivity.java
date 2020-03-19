@@ -1,40 +1,31 @@
 package com.example.xz.weiji.AppActivity;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.xz.weiji.DataTable.Daojishi;
+import com.example.xz.weiji.DataTable.CountDown;
 import com.example.xz.weiji.R;
 import com.example.xz.weiji.Utils.Utils;
 import com.example.xz.weiji.View.LeftSwipeMenuRecyclerView;
 import com.example.xz.weiji.View.OnItemActionListener;
-import com.example.xz.weiji.View.TestDialog;
+import com.example.xz.weiji.View.TheDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,31 +38,26 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-/**
- * Created by xz on 2016/11/6.
- */
 
-public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener {
+public class CountDownActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener {
     private Toolbar tb_daojishi;
     private LeftSwipeMenuRecyclerView rclv_mdaojishilist;
     private SwipeRefreshLayout swipeLayout;
     private BmobUser user;
-    private String selecteddate;
-    private TestDialog dialog;
+    private TheDialog dialog;
     private static Context context;
     private List<String> text1list;
     private List<String> text2list;
     private List<String> text3list;
-    private List<Daojishi> daojishilist;
+    private List<CountDown> daojishilist;
     private DaojishiAdapter daojishiAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daojishi);
-        context=DaojishiActivity.this;
+        context= CountDownActivity.this;
         initView();
 
 
@@ -83,7 +69,7 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
         rclv_mdaojishilist = (LeftSwipeMenuRecyclerView) findViewById(R.id.rclv_mdaojishilist);
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
         tb_daojishi.inflateMenu(R.menu.menu_main);
-        tb_daojishi.setOnMenuItemClickListener(DaojishiActivity.this);
+        tb_daojishi.setOnMenuItemClickListener(CountDownActivity.this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
         {
             tb_daojishi.getLayoutParams().height = Utils.getAppBarHeight(this);
@@ -122,18 +108,18 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
         text1list=new ArrayList<String>();
         text2list=new ArrayList<String>();
         text3list=new ArrayList<String>();
-        daojishilist=new ArrayList<Daojishi>();
-        BmobQuery<Daojishi> query=new BmobQuery<Daojishi>();
+        daojishilist=new ArrayList<CountDown>();
+        BmobQuery<CountDown> query=new BmobQuery<CountDown>();
         query.addWhereEqualTo("user",user.getObjectId());
-        query.findObjects(new FindListener<Daojishi>() {
+        query.findObjects(new FindListener<CountDown>() {
             @Override
-            public void done(List<Daojishi> list, BmobException e) {
+            public void done(List<CountDown> list, BmobException e) {
                 if(e==null){
-                    for(Daojishi daojishi:list){
-                        text1list.add(daojishi.getText());
-                        text2list.add(getDay(daojishi.getLaterdate()));
-                        text3list.add(daojishi.getLaterdate());
-                        daojishilist.add(daojishi);
+                    for(CountDown countDown :list){
+                        text1list.add(countDown.getText());
+                        text2list.add(getDay(countDown.getLaterdate()));
+                        text3list.add(countDown.getLaterdate());
+                        daojishilist.add(countDown);
                     }
                     rclv_mdaojishilist.setItemAnimator(new DefaultItemAnimator());
                     rclv_mdaojishilist.setLayoutManager(new GridLayoutManager(context,2));
@@ -153,11 +139,9 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
                         @Override
                         public void OnItemDelete(int position) {
                             deleteDaojiri(position);
-                             //Toast.makeText(DaojishiActivity.this,"点击了删除按钮",Toast.LENGTH_SHORT).show();
                         }
                     });
                     swipeLayout.setRefreshing(false);
-                   // Toast.makeText(context, "调用了onRefresh方法", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(context, "查询失败", Toast.LENGTH_SHORT).show();
                 }
@@ -168,9 +152,8 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
     //删除倒计日
     public void deleteDaojiri(final int position){
 
-
-        Daojishi daojishi = daojishilist.get(position);
-        daojishi.delete(new UpdateListener() {
+        CountDown countDown = daojishilist.get(position);
+        countDown.delete(new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
@@ -178,11 +161,7 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
                     text1list.remove(position);
                     text2list.remove(position);
                     text3list.remove(position);
-
                     daojishiAdapter.notifyItemRemoved(position);
-
-
-
                 } else
                     Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
             }
@@ -192,7 +171,7 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
-            dialog=new TestDialog(DaojishiActivity.this);
+            dialog=new TheDialog(CountDownActivity.this);
             dialog.show();
 
         }
@@ -204,7 +183,6 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_daojishi_commit:
-//                commit();
 
         }
 
@@ -268,7 +246,7 @@ public class DaojishiActivity extends BaseActivity implements Toolbar.OnMenuItem
             int month = calendar.get(Calendar.MONTH)+1;
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             int day2=calendar.get(Calendar.DAY_OF_MONTH)-1;
-            Log.i("DaojishiActivity","item获取当前日期："+year + "-" + month + "-" + day);
+            Log.i("CountDownActivity","item获取当前日期："+year + "-" + month + "-" + day);
             if(text3list.get(position).equals(year + "-" + month + "-" + day)){
                 holder.text2.setText("0天");
             }else {

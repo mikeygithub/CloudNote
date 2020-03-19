@@ -1,7 +1,5 @@
 package com.jimmy.common.data;
 
-/**
- */
 public interface JeekDBConfig {
 
     int DATABASE_VERSION = 3;

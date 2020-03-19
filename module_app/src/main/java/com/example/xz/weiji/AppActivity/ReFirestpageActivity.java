@@ -39,8 +39,6 @@ import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.QueryListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- */
 
 public class ReFirestpageActivity extends AppCompatActivity {
 

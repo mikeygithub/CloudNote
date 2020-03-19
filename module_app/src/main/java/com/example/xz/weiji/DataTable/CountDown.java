@@ -3,11 +3,8 @@ package com.example.xz.weiji.DataTable;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobUser;
 
-/**
- * Created by xz on 2016/11/6.
- */
 
-public class Daojishi extends BmobObject {
+public class CountDown extends BmobObject {
     private String text;
     private String laterdate;
     private BmobUser user;

@@ -6,9 +6,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.WindowManager;
 
-/**
- * Created by MJJ on 2015/7/25.
- */
 public class Utils {
 
 

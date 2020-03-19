@@ -8,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Jimmy on 2016/7/31.
- */
 public abstract class BaseFragment extends Fragment {
 
     protected Activity mActivity;

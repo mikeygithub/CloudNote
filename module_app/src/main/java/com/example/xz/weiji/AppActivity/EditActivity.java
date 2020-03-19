@@ -56,10 +56,6 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by xz on 2016/9/20.
- */
-
 public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, View.OnClickListener, RichTextEditor.OnDeleteImageListener {
     private Toolbar toolBar;
     private RichTextEditor et_text;
@@ -124,7 +120,6 @@ public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                     toolBar.getPaddingRight(),
                     toolBar.getPaddingBottom());
         }
-        //setSupportActionBar(toolBar);
         toolBar.setTitle("");
 
         toolBar.inflateMenu(R.menu.menu_second);
@@ -138,8 +133,6 @@ public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         });
         toolBar.setOnMenuItemClickListener(this);
         et_text = (RichTextEditor) findViewById(R.id.et_text);
-//        et_text.setBackgroundColor(getResources().getColor(R.color.white));
-        //  et_text.setSelection(0);
         et_notetitle = (MaterialEditText) findViewById(R.id.et_notetitle);
         ll_editcontent = (LinearLayout) findViewById(R.id.ll_editcontent);
 
@@ -234,24 +227,12 @@ public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClic
 
     @Override
     public void onBackPressed() {
-//        Intent i=getIntent();
-//        if(i.getStringExtra("类名")=="ReFirestpageActivity"){
-//            Intent intent = new Intent(EditActivity.this, ReFirestpageActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }else if(i.getStringExtra("类名")=="NoteListActivity"){
-        //super.onBackPressed();
-        //  Intent i = new Intent(EditActivity.this, NoteListActivity.class);
-        //  i.putExtra("name", user.getUsername());
-        // startActivity(i);
         EditActivity.this.setResult(0x11, i);
         finish();
-        //super.onBackPressed();
-
     }
 
     private void submit() {
-        // validate
+
         String notetitle = et_notetitle.getText().toString().trim();
         if (TextUtils.isEmpty(notetitle)) {
             Toast.makeText(this, "标题不能为空", Toast.LENGTH_SHORT).show();
@@ -278,11 +259,6 @@ public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     }
 
     private void callGallery() {
-//        //调用系统图库
-//        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");// 相片类型
-//        startActivityForResult(intent, 1);
-
         //调用第三方图库选择
         PhotoPicker.builder()
                 .setPhotoCount(5)//可选择图片数量
@@ -305,19 +281,6 @@ public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         ContentResolver resolver = getContentResolver();
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-//                Uri uri=data.getData();
-//                try {
-//                     bitmap= BitmapFactory.decodeStream(resolver
-//                    .openInputStream(uri));
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//                if(bitmap!=null){
-//
-//                       insertIntoEditText(getBitmapMime(resizeImage(bitmap,400,800),uri));
-//                }else {
-//                    Toast.makeText(this,"图片插入失败",Toast.LENGTH_SHORT).show();
-//                }
             } else if (requestCode == PhotoPicker.REQUEST_CODE) {
                 setImage(data);
             }
@@ -375,9 +338,6 @@ public class EditActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 }
             });
         }
-
-        //et_text.addEditTextAtIndex(et_text.getLastIndex(), " ");
-
     }
 
     /**

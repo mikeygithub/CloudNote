@@ -7,9 +7,6 @@ import android.view.View;
 
 import rx.Subscription;
 
-/**
- * Created by Jimmy on 2016/7/31.
- */
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override

@@ -11,9 +11,7 @@ import com.jeek.calendar.widget.calendar.OnCalendarClickListener;
 
 import java.util.Calendar;
 
-/**
- * Created by Jimmy on 2016/10/6 0006.
- */
+
 public class MonthCalendarView extends ViewPager implements OnMonthClickListener {
 
     private MonthAdapter mMonthAdapter;

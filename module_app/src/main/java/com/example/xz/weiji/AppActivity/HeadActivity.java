@@ -177,16 +177,6 @@ public class HeadActivity extends BaseActivity implements View.OnClickListener {
 
 
         }else if(requestCode==3&&resultCode==RESULT_OK) {
-            /**    Bundle bundle=data.getExtras();
-            Bitmap bitmap=(Bitmap)bundle.get("data");
-            Uri uriPath=null;
-            if(data.getData()!=null){
-                uriPath=data.getData();
-            }else {
-                uriPath=Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(),bitmap,null,null));
-            }
-            Log.i("path",uriPath.toString());
-           **/
             File file=new File(Environment.getExternalStorageDirectory()+"/temp.jpg");
             Uri uriPath=Uri.fromFile(file);
             path=Environment.getExternalStorageDirectory()+"/temp.jpg";
@@ -225,8 +215,6 @@ public class HeadActivity extends BaseActivity implements View.OnClickListener {
 
                     newUser1.setObjectId(user1.getObjectId());
                     newUser1.setSessionToken(user1.getSessionToken());
-                    //Toast.makeText(HeadActivity.this, "上传文件成功"
-                     //       + bmobFile.getFileUrl(), Toast.LENGTH_SHORT).show();
                     newUser1.setHead(bmobFile);
                     newUser1.update(user1.getObjectId(), new UpdateListener() {
                         @Override
@@ -243,8 +231,7 @@ public class HeadActivity extends BaseActivity implements View.OnClickListener {
                         }
                     });
                 } else {
-                    Toast.makeText(HeadActivity.this, "上传文件失败"
-                            + e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HeadActivity.this, "上传文件失败" + e.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 

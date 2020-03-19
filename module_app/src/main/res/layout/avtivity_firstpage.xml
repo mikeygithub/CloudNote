@@ -31,11 +31,6 @@
             android:layout_height="wrap_content" />
     </android.support.v7.widget.Toolbar>
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:src="@android:color/white"-->
-        <!--android:layout_height="0.3dp" />-->
-
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
@@ -44,9 +39,6 @@
         android:layout_weight="1"/>
 
 
-
-
-    <!--<include layout="@layout/floating_btns"/>-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"

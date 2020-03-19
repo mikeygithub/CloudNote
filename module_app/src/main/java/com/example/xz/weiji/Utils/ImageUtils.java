@@ -15,9 +15,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 
-/**
- * Created by sendtion on 2016/5/25.
- */
 public class ImageUtils {
 
     /**

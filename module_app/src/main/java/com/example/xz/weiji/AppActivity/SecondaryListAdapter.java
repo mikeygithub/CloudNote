@@ -7,19 +7,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Description: Providing a adapter to implement secondary list base on
- * {@link RecyclerView.Adapter} for {@link RecyclerView}.
- * <!--
- * Author: Rusan
- * Date: 2017/4/20
- * Version: 0.0.1
- * ---------------------------------------------
- * History:
- * <p>
- * -->
- */
-
 public abstract class SecondaryListAdapter<GVH, SVH extends RecyclerView.ViewHolder> extends RecyclerView
         .Adapter<RecyclerView.ViewHolder> {
 
@@ -317,11 +304,6 @@ public abstract class SecondaryListAdapter<GVH, SVH extends RecyclerView.ViewHol
             this.subItemIndex = subItemIndex;
         }
     }
-
-
-    /**
-     * Created by Rusan on 2017/4/12.
-     */
 
     public final static class DataTree<K, V> {
 

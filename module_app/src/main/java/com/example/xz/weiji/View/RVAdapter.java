@@ -22,9 +22,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by Administrator on 2016/8/15.
- */
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.Holder> {
     //private List<String> list = new ArrayList<String>();
     private Context context;

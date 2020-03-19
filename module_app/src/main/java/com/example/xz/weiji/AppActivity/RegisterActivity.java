@@ -3,6 +3,7 @@ package com.example.xz.weiji.AppActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,9 +16,6 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-/**
- * Created by xz on 2016/9/16.
- */
 
 public class RegisterActivity extends BaseActivity {
     private MaterialEditText rg_username;
@@ -37,12 +35,6 @@ public class RegisterActivity extends BaseActivity {
                 registerUser();
             }
         });
-
-
-
-
-
-
     }
 
     private void registerUser() {
@@ -55,7 +47,8 @@ public class RegisterActivity extends BaseActivity {
                 if(e==null) {
                     Toast.makeText(RegisterActivity.this, "注册成功  点击返回即可登陆", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(RegisterActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                    Log.i("register",e.toString());
                 }
             }
         });

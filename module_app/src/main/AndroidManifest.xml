@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/launcher_memory"
         android:label="@string/application_name"
@@ -75,7 +75,7 @@
         <activity android:name=".AppActivity.ChangePersonActivity" />
         <activity android:name=".AppActivity.ReFirestpageActivity"></activity>
         <activity android:name=".AppActivity.NoteListActivity" />
-        <activity android:name=".AppActivity.DaojishiActivity" />
+        <activity android:name=".AppActivity.CountDownActivity" />
         <activity android:name=".AppActivity.HeadActivity" />
         <activity
             android:name="me.iwf.photopicker.PhotoPagerActivity"

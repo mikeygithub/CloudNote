@@ -10,9 +10,6 @@ import android.view.View;
 
 import com.example.xz.weiji.R;
 
-/**
- * Created by xz on 2016/9/23.
- */
 
 public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
@@ -21,24 +18,13 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     public RecycleViewDivider(Context context) {
         final TypedArray array = context.obtainStyledAttributes(ATTRS);
         mDivider=array.getDrawable(0);
-        //mDivider=context.getResources().getDrawable(R.drawable.divider);
         array.recycle();
     }
-
-//    @Override
-//    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-//        super.onDraw(c, parent, state);
-//        drawVertical(c,parent);
-//        drawHorizontal(c,parent);
-//    }
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
-      //  drawVertical(c,parent);
         drawHorizontal(c,parent);
-       // drawLeftVertical(c,parent);
-       // drawUpHorizontal(c,parent);
     }
 
     // 水平线
@@ -108,9 +94,4 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             mDivider.draw(c);
         }
     }
-
-//    @Override
-//    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-//        outRect.set(0,0,mDivider.getIntrinsicWidth(),mDivider.getIntrinsicHeight());
-//    }
 }

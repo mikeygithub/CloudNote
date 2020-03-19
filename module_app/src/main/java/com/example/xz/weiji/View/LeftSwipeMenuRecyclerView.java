@@ -13,11 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
-import com.example.xz.weiji.AppActivity.DaojishiActivity;
+import com.example.xz.weiji.AppActivity.CountDownActivity;
 
-/**
- * Created by Administrator on 2016/8/16.
- */
 public class LeftSwipeMenuRecyclerView extends RecyclerView {
     private LinearLayout llDelete;
     private LinearLayout llStar;
@@ -107,8 +104,8 @@ public class LeftSwipeMenuRecyclerView extends RecyclerView {
                         llDelete=holder.llDelete;
                         llStar=holder.llStar;
                     }else {
-                       DaojishiActivity.DaojishiAdapter.DaojishiViewHolder holder
-                               =(DaojishiActivity.DaojishiAdapter.DaojishiViewHolder)getChildViewHolder(view);
+                       CountDownActivity.DaojishiAdapter.DaojishiViewHolder holder
+                               =(CountDownActivity.DaojishiAdapter.DaojishiViewHolder)getChildViewHolder(view);
                         //获得这个view的position
                         mPosition = holder.getAdapterPosition();
                         //获得这个view的整个布局
@@ -118,12 +115,6 @@ public class LeftSwipeMenuRecyclerView extends RecyclerView {
                         llStar=holder.ll_star;
                     }
 
-
-
-//                    //获得这个view的删除按钮
-//                    tvDelete = holder.tvDelete;
-//                    //这个view的整个置顶按钮
-//                    tvTop = holder.tvTop;
                     //两个按钮的宽度
                     mMaxLength = llDelete.getWidth() + llStar.getWidth();
 
@@ -190,10 +181,6 @@ public class LeftSwipeMenuRecyclerView extends RecyclerView {
                     mItemLayout.scrollBy(dx, 0);
                 //如果水平移动距离大于30像素的话，recyclerView不会上下滑动
                 }
-//                else  if (Math.abs(dx) > 30){
-//                    return true;
-//                    //触摸事件已经在此处消费，父View不会监听到此事件
-//                }
                 //如果菜单正在打开就不能上下滑动
                 if (isItemMoving){
                     mLastX = x;
