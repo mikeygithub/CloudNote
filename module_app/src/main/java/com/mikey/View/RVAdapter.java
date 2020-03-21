@@ -20,7 +20,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.Holder> {
-    //private List<String> list = new ArrayList<String>();
     private Context context;
     private ArrayList<String> noteList;
     private ArrayList<String> dateList;

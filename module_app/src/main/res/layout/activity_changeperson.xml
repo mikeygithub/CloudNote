@@ -85,7 +85,7 @@
             android:layout_height="wrap_content" />
         <de.hdodenhof.circleimageview.CircleImageView
             app:border_width="1dp"
-            app:border_color="@android:color/white"
+            app:border_color="@android:color/transparent"
             android:id="@+id/iv_head"
             android:layout_toLeftOf="@id/iv_arrowright"
             android:layout_margin="8dp"

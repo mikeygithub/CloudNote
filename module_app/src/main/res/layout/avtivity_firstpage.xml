@@ -16,7 +16,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:src="@mipmap/icon"
             android:id="@+id/iv_firstpage_head"
-            app:border_color="@android:color/white"
+            app:border_color="@android:color/transparent"
             android:paddingLeft="10dp"
             app:border_width="1dp"
             android:layout_width="45dp"

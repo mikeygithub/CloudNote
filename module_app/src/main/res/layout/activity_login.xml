@@ -14,7 +14,7 @@
             android:src="@mipmap/icon"
             android:layout_gravity="center"
             android:layout_width="60dp"
-            app:border_color="@android:color/white"
+            app:border_color="@android:color/transparent"
             app:border_width="2dp"
             android:layout_height="60dp" />
         <com.rengwuxian.materialedittext.MaterialEditText

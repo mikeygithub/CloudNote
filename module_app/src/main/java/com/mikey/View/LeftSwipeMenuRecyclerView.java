@@ -155,7 +155,6 @@ public class LeftSwipeMenuRecyclerView extends RecyclerView {
                 int dx = mLastX - x;
                 int dy = mLastY - y;
                 //上一点滑动的x
-                //action_on break后，mItemlayout有可能为空
                 if(mItemLayout==null){
                     break;
                 }
@@ -165,8 +164,6 @@ public class LeftSwipeMenuRecyclerView extends RecyclerView {
 
                     isItemMoving = true;
                     //超出左边界则始终保持不动
-                    Log.i("scrollx",scrollx+"");
-                    Log.i("dx",dx+"");
                     if (scrollx + dx <= 0) {
                         mItemLayout.scrollTo(0, 0);
                         //滑动无效

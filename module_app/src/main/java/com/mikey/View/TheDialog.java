@@ -140,9 +140,6 @@ public class TheDialog extends Dialog {
                  * 2.|des|<50表示触摸从down到Move的水平移动距离要满足<50才进入if条件
                  */
                 if ((mLastX!=x && Math.abs(dy) / Math.abs(dx) > 2&&Math.abs(desX)<30)||(dx==0&&dy!=0)) {
-
-//                    if(Math.abs(dx) < Math.abs(dy)&&Math.abs(dy)>10&&Math.abs(dx)<50) {
-
                         moveY = ev.getY() - startY;
                         view.scrollBy(0, dy);
 
@@ -151,13 +148,11 @@ public class TheDialog extends Dialog {
                         if (view.getScrollY() > 0) {
                             view.scrollTo(0, 0);
                         }
-//                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:
 
                 final int scrollY=view.getScrollY();
-                Log.i("xiaozhou","scrollY:"+scrollY);
                 if(isYMoving) {
                     isYMoving=false;
                     if (view.getScrollY() < -view.getHeight() / 4
@@ -165,9 +160,6 @@ public class TheDialog extends Dialog {
                         this.dismiss();
 
                     }
-//                    view.scrollTo(0, 0);
-//                    ObjectAnimator.ofFloat(view,"translationY",
-//                            view.getScrollY(),0,500).start();
                     ValueAnimator animator=ValueAnimator.ofInt(0,1).setDuration(500);
                     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
@@ -187,33 +179,6 @@ public class TheDialog extends Dialog {
         mLastY=y;
         return super.dispatchTouchEvent(ev);
     }
-
-//    @Override
-//    public boolean onTouchEvent(@NonNull MotionEvent event) {
-//        switch (event.getAction()){
-//            case MotionEvent.ACTION_DOWN:
-//                startY=event.getY();
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                moveY=event.getY()-startY;
-//                view.scrollBy(0,-(int)moveY);
-//                if(view.getScrollY()>0){
-//                    view.scrollTo(0,0);
-//                }
-//                startY=event.getY();
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                if(view.getScrollY()<-view.getHeight()/3
-//                        &&moveY>0){
-//                    Toast.makeText(context,"dismiss",Toast.LENGTH_SHORT).show();
-//                    this.dismiss();
-//
-//                }
-//                view.scrollTo(0,0);
-//                break;
-//        }
-//        return super.onTouchEvent(event);
-//    }
     private void initDatePicker() {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -227,9 +192,7 @@ public class TheDialog extends Dialog {
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 monthOfYear++;
                 selecteddate= year + "-" + monthOfYear + "-" + dayOfMonth ;
-                //  Toast.makeText(CountDownActivity.this, "您已选择"+selecteddate, Toast.LENGTH_SHORT).show();
                 Log.i("CountDownActivity", "点击日期时selecteddate："+selecteddate);
-                // daojishi.setLaterdate(date);
             }
         });
 
